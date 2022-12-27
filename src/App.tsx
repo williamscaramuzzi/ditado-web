@@ -38,7 +38,7 @@ export default function App() {
     let cell1 = row.insertCell(1);
     cell1.innerText = palavra;
     let cell2 = row.insertCell(2);
-    cell2.innerText = parcial.toString();
+    cell2.innerText = parcial.toString() + " segundos";
     if (vetorParciais[0] === 0) {
       let vetorinicial = [parcial];
       setVetorParciais(vetorinicial)
@@ -90,8 +90,8 @@ export default function App() {
   return (
     <div className="bloco">
       <div className="container">
-        <h1>DITADO</h1>
-        <h2>Leia as palavras</h2>
+        <div className="titulo">DITADO</div>
+        <div className="subtitulo">Leia as palavras</div>
         <div className="palavra">{palavra}</div>
         <br />
         <div className="divdosbotoes">
@@ -99,14 +99,12 @@ export default function App() {
           <button onClick={pararDitado}>Parar!</button>
         </div>
         <br /><br />
-        <span>Tempo decorrido: {cronometro}</span>
+        <span className="subtitulo">Tempo decorrido: {cronometro}</span>
       </div>
       <div className="divparciais">
-        <h2>Tabela de parciais</h2>
-        <br />
-        Média de tempo: <span>{media}</span>
-        <br />
-        <br />
+        <div className="subtitulo">
+          Tempos por palavra
+        </div>
         <br />
         <div className="divdatable">
           <table id="tabela">
@@ -114,6 +112,9 @@ export default function App() {
             </tbody>
           </table>
         </div>
+        <span className="subtitulo">
+          Média de tempo: {media}
+        </span>
       </div>
     </div>
   )
