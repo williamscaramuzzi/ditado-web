@@ -89,6 +89,9 @@ export default function App() {
 
   return (
     <div className="bloco">
+      <style>
+        @import url('https://fonts.cdnfonts.com/css/handineat');
+      </style>
       <div className="container">
         <div className="titulo">DITADO</div>
         <div className="subtitulo">Leia as palavras</div>
