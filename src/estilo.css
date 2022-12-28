@@ -44,12 +44,12 @@ body {
     color: red;
     text-align: center;
 }
-@media screen and (min-width: 500px){
+@media screen and (min-width: 600px){
     .palavra{
         font-size: 6rem;
     }
 }
-@media screen and (max-width: 499px){
+@media screen and (max-width: 599px){
     .palavra{
         font-size: 11vw;
     }
