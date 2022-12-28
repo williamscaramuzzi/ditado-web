@@ -14,6 +14,7 @@ export default function App() {
 
   function iniciarCronometro() {
     setUltimomilestone(0);
+    setVetorParciais([0]);
     var contador = 0;
     let id = setInterval(() => {
       contador = contador + 1;
