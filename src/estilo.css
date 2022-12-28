@@ -42,8 +42,17 @@ body {
     width: 90%;
     height: 7rem;
     color: red;
-    font-size: 6rem;
     text-align: center;
+}
+@media screen and (min-width: 500px){
+    .palavra{
+        font-size: 6rem;
+    }
+}
+@media screen and (max-width: 499px){
+    .palavra{
+        font-size: 11vw;
+    }
 }
 .titulo{
     font-size: 5rem;
