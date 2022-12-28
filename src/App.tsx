@@ -122,5 +122,15 @@ export default function App() {
     </div>
   )
 }
+/**
+ * sempre que for fazer deploy
+ * 1) faça git add . e commit na branch master
+ * 2) faça git push -u origin master
+ * 3) rode npm run build
+ * 4) corrija o problema no HTML buildado na pasta dist, o caminho para os assets tem que ser sem barra /
+ * 5) faça git add dist -f
+ * 6) faça git commit -m "Adding dist"
+ * 7) faça git subtree push --prefix dist origin gh-pages
+ */
 
 
