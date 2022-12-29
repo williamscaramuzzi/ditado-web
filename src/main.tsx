@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import JogoPalavras from "./JogoPalavras";
 import Indice from "./Indice";
 import JogoFonemas from "./JogoFonemas";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import "./estilo.css";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Indice />,
