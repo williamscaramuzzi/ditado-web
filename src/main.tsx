@@ -1,9 +1,28 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import JogoPalavras from "./JogoPalavras";
+import Indice from "./Indice";
+import JogoFonemas from "./JogoFonemas";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./estilo.css";
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Indice />,
+  },
+  {
+    path: "/fonemas",
+    element: <JogoFonemas />,
+  },
+  {
+    path: "/palavras",
+    element: <JogoPalavras />,
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
