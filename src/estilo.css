@@ -13,15 +13,16 @@ body {
   font-size: 5vw;
 }
 .escolha {
-  display: flex;
+  width: 50vw;
   padding: 10px;
   border: 1px solid;
-  height: 30vh;
+  justify-content: center;
 }
 .escolha button {
+  border: 1px solid;
+  width: 100%;
+  height: 15vh;
   margin-left: 10px;
-  height: 95%;
-  width: 40vw;
   font-size: 5vw;
 }
 .bloco {
@@ -84,11 +85,7 @@ body {
   font-size: 2rem;
   color: black;
 }
-#botaovoltar {
-  border-radius: 15px;
-  width: 50px;
-  margin: 5px;
-}
+
 .divdosbotoes {
   display: flex;
   flex-wrap: wrap;
@@ -102,6 +99,11 @@ button {
   width: 50%;
   font-size: 2rem;
 }
+#botaovoltar {
+  border-radius: 15px;
+  width: 50px;
+  height: 50px;
+}
 #tabela {
   border: 1px solid;
 }
@@ -114,4 +116,39 @@ tr:nth-child(odd) {
 #tabela td {
   border-bottom: 1px solid red;
   width: 99px;
+}
+.containerdorelogio {
+  border: 1px solid white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  grid-template-rows: repeat(5, 1fr);
+}
+.titulodorelogio {
+  grid-column: 1;
+  grid-row: 1;
+}
+.divdosbotoesdorelogio {
+  grid-column: 1;
+  grid-row: 2;
+  padding: 10px;
+  border: 1px solid;
+  height: 80%;
+}
+#imgdorelogio {
+  max-width: 100%;
+  max-height: 100%;
+}
+.divdorelogio {
+  background-image: url("./assets/relogiofundo.png");
+  background-size: 800px 800px;
+  border: 1px solid red;
+  width: 800px;
+  height: 800px;
+  grid-column: 2;
+  grid-row: 1 / 5;
+}
+.divparciaisdorelogio {
+  grid-column: 1;
+  grid-row: 3 / 5;
 }

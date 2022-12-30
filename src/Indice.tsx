@@ -20,6 +20,13 @@ export default function Indice() {
         >
           Treinar fonemas
         </button>
+        <button
+          onClick={() => {
+            navigate("/relogio");
+          }}
+        >
+          Treinar relógio
+        </button>
       </div>
     </div>
   );

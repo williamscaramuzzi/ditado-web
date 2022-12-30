@@ -5,6 +5,7 @@ import Indice from "./Indice";
 import JogoFonemas from "./JogoFonemas";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import "./estilo.css";
+import JogoRelogio from "./JogoRelogio";
 
 const router = createHashRouter([
   {
@@ -18,6 +19,10 @@ const router = createHashRouter([
   {
     path: "/palavras",
     element: <JogoPalavras />,
+  },
+  {
+    path: "/relogio",
+    element: <JogoRelogio />,
   },
 ]);
 
