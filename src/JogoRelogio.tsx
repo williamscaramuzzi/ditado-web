@@ -98,22 +98,26 @@ export default function JogoRelogio() {
 
   function proximaHora() {
     let angulo1 = listaangulos[Math.floor(Math.random() * listaangulos.length)];
-    let hora_randomica = mapa_angulo_hora.get(angulo1)!;
-    setHora(hora_randomica);
-    setx2hora((v) => {
-      return 400 + 236 * Math.sin(degrees_to_radians(angulo1));
-    });
-    sety2hora((v) => {
-      return 400 - 236 * Math.cos(degrees_to_radians(angulo1));
-    });
-    let angulo2 = listaangulos[Math.floor(Math.random() * listaangulos.length)];
-    let minuto_randomico = mapa_angulo_minuto.get(angulo2)!;
+    let minuto_randomico = mapa_angulo_minuto.get(angulo1)!;
     setMinuto(minuto_randomico);
     setx2minuto((v) => {
-      return 400 + 330 * Math.sin(degrees_to_radians(angulo2));
+      return 400 + 330 * Math.sin(degrees_to_radians(angulo1));
     });
     sety2minuto((v) => {
-      return 400 - 330 * Math.cos(degrees_to_radians(angulo2));
+      return 400 - 330 * Math.cos(degrees_to_radians(angulo1));
+    });
+    let angulo2 = listaangulos[Math.floor(Math.random() * listaangulos.length)];
+    let hora_randomica = mapa_angulo_hora.get(angulo2)!;
+    //temperar o angulo2 pro ponteiro das horas ficar no meio do caminho conforme os minutos
+    //minutos sobre sessenta me dá uma porcentagem... multiplico essa porcentagem por 30 graus, me da uma fração desses 30 graus
+    let tempero = (parseInt(minuto_randomico) / 60) * 30;
+    angulo2 = angulo2 + tempero;
+    setHora(hora_randomica);
+    setx2hora((v) => {
+      return 400 + 236 * Math.sin(degrees_to_radians(angulo2));
+    });
+    sety2hora((v) => {
+      return 400 - 236 * Math.cos(degrees_to_radians(angulo2));
     });
   }
 
