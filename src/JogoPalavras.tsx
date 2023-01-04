@@ -1,21 +1,32 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import vetorpalavras from "./palavras";
 
+
 export default function JogoPalavras() {
+  console.log("criou a function JogoPalavras");
+  const navigate = useNavigate();
   const [palavra, setPalavra] = useState("");
   const [botao, setBotao] = useState("Começar!");
-  const [valendo, setValendo] = useState(false);
+  const [media, setMedia] = useState("");
   const [cronometro, setCronometro] = useState(0);
   const [intervalID, setIntervalID] = useState(0);
-  const [ultimomilestone, setUltimomilestone] = useState(0);
-  const [vetorParciais, setVetorParciais] = useState<number[]>([0]);
-  const [media, setMedia] = useState("");
-  const navigate = useNavigate();
+  //as próximas variáveis são candidatas a useRef
+  var ultimomilestone = useRef(0);
+  var vetorParciais = useRef<number[]>([0]);
+  var indice = useRef(0);
+  var valendo = useRef<boolean>(false);
+
+  function shuffle(array: string[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
 
   function iniciarCronometro() {
-    setUltimomilestone(0);
-    setVetorParciais([0]);
+    ultimomilestone.current = 0;
+    vetorParciais.current = [0];
     var contador = 0;
     let id = setInterval(() => {
       contador = contador + 1;
@@ -25,14 +36,13 @@ export default function JogoPalavras() {
   }
 
   function pararCronometro() {
-    console.log("parando o cronometro de id: " + intervalID);
     clearInterval(intervalID);
     setCronometro(0);
   }
 
   function marcarParcial() {
-    let parcial = cronometro - ultimomilestone;
-    setUltimomilestone(cronometro);
+    let parcial = cronometro - ultimomilestone.current;
+    ultimomilestone.current = cronometro;
     let tbody: HTMLTableElement | null = document.getElementById("tbody") as HTMLTableElement;
     let row = tbody.insertRow();
     let cell0 = row.insertCell(0);
@@ -41,38 +51,42 @@ export default function JogoPalavras() {
     cell1.innerText = palavra;
     let cell2 = row.insertCell(2);
     cell2.innerText = parcial.toString() + " segundos";
-    if (vetorParciais[0] === 0) {
+    if (vetorParciais.current[0] === 0) {
       let vetorinicial = [parcial];
-      setVetorParciais(vetorinicial);
+      vetorParciais.current = vetorinicial;
       setMedia(parcial.toString());
     } else {
-      setVetorParciais((oldValue) => {
-        let novoVetor = [...oldValue, parcial];
-        let total = 0;
-        novoVetor.forEach((value) => {
-          total = total + value;
-        });
-        let media = total / novoVetor.length;
-        setMedia(media.toFixed(2));
-        return novoVetor;
+      let novoVetor = [...vetorParciais.current, parcial];
+      let total = 0;
+      novoVetor.forEach((value) => {
+        total = total + value;
       });
+      let media = total / novoVetor.length;
+      setMedia(media.toFixed(2));
+      vetorParciais.current = novoVetor;
     }
   }
 
-  function proximaPalavra() {
-    let i = Math.floor(Math.random() * vetorpalavras.length);
-    setPalavra(vetorpalavras[i]);
+  function proximaPalavra(i: number) {
+    setPalavra(vetorpalavras[indice.current]);
+    if (indice.current === vetorpalavras.length - 2) {
+      indice.current = 0;
+    } else {
+      console.log("entrou no else")
+      indice.current = indice.current + 1;
+    }
+    console.log("indice agora: " + indice)
   }
 
   async function handleBotao() {
-    if (valendo) {
+    if (valendo.current) {
       marcarParcial();
-      proximaPalavra();
+      proximaPalavra(indice.current);
     } else {
       //Só entra nesse else a primeira vez, quando o botão tá escrito começar
-      setValendo(true);
+      valendo.current = true;
       setBotao("Próxima!");
-      proximaPalavra();
+      proximaPalavra(indice.current);
       iniciarCronometro();
       setMedia("");
       let tbody: HTMLTableElement | null = document.getElementById("tbody") as HTMLTableElement;
@@ -81,11 +95,15 @@ export default function JogoPalavras() {
   }
 
   function pararDitado() {
-    setValendo(false);
+    valendo.current = false;
     setBotao("Começar!");
     pararCronometro();
     setPalavra("");
   }
+  useEffect(() => {
+    shuffle(vetorpalavras);
+    console.log("vetor palavras shuffleado: " + vetorpalavras.toString())
+  }, [])
 
   return (
     <div className="bloco">
