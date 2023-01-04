@@ -171,14 +171,14 @@ export default function JogoRelogio() {
             y1="400"
             x2={x2hora}
             y2={y2hora}
-            style={{ stroke: "rgba(52,52,80,0.5)", strokeWidth: 20 }}
+            style={{ stroke: "rgba(240,33,33,0.7)", strokeWidth: 20 }}
           />
           <line
             x1="400"
             y1="400"
             x2={x2minuto}
             y2={y2minuto}
-            style={{ stroke: "rgba(240,33,33,0.7)", strokeWidth: 20 }}
+            style={{ stroke: "rgba(52,52,80,0.5)", strokeWidth: 20 }}
           />
         </svg>
         <div className="divparciaisdorelogio">
