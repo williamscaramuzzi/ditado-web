@@ -16,5 +16,9 @@ const vetorfonemas = [
   "QUE - QUI",
   "BAN - BEN - BIN - BON - BUN",
   "VAM - VEM - VIM - VOM - VUM",
+  "BAM - BEM - BIM - BOM - BUM",
+  "PAR - PER - PIR - POR - PUR",
+  "RA - RE - RI - RO - RU",
+  "SA - SE - SI - SO - SU"
 ];
 export default vetorfonemas;

@@ -69,7 +69,7 @@ export default function JogoPalavras() {
 
   function proximaPalavra(i: number) {
     setPalavra(vetorpalavras[indice.current]);
-    if (indice.current === vetorpalavras.length - 2) {
+    if (indice.current === vetorpalavras.length - 1) {
       indice.current = 0;
     } else {
       console.log("entrou no else")

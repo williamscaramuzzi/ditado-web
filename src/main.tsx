@@ -6,6 +6,7 @@ import JogoFonemas from "./JogoFonemas";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import "./estilo.css";
 import JogoRelogio from "./JogoRelogio";
+import JogoLetras from "./JogoLetras";
 
 const router = createHashRouter([
   {
@@ -15,6 +16,10 @@ const router = createHashRouter([
   {
     path: "/fonemas",
     element: <JogoFonemas />,
+  },
+  {
+    path: "/letras",
+    element: <JogoLetras />,
   },
   {
     path: "/palavras",

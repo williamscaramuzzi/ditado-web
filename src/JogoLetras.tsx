@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import vetorfonemas from "./fonemas";
+import vetorletras from "./letras";
 
-export default function JogoFonemas() {
+export default function JogoLetras() {
   const navigate = useNavigate();
-  const [fonema, setFonema] = useState("");
+  const [letra, setLetra] = useState("");
   const [botao, setBotao] = useState("Começar!");
   const [media, setMedia] = useState("");
   const [cronometro, setCronometro] = useState(0);
@@ -46,7 +46,7 @@ export default function JogoFonemas() {
     let cell0 = row.insertCell(0);
     cell0.innerText = (row.rowIndex + 1).toString();
     let cell1 = row.insertCell(1);
-    cell1.innerText = fonema;
+    cell1.innerText = letra;
     let cell2 = row.insertCell(2);
     cell2.innerText = parcial.toString() + " segundos";
     if (vetorParciais.current[0] === 0) {
@@ -65,9 +65,9 @@ export default function JogoFonemas() {
     }
   }
 
-  function proximoFonema() {
-    setFonema(vetorfonemas[indice.current]);
-    if (indice.current === vetorfonemas.length - 1) {
+  function proximaLetra() {
+    setLetra(vetorletras[indice.current]);
+    if (indice.current === vetorletras.length - 1) {
       indice.current = 0;
     } else {
       indice.current = indice.current + 1;
@@ -77,12 +77,12 @@ export default function JogoFonemas() {
   async function handleBotao() {
     if (valendo.current) {
       marcarParcial();
-      proximoFonema();
+      proximaLetra();
     } else {
       //Só entra nesse else a primeira vez, quando o botão tá escrito começar
       valendo.current = true;
       setBotao("Próxima!");
-      proximoFonema();
+      proximaLetra();
       iniciarCronometro();
       setMedia("");
       let tbody: HTMLTableElement | null = document.getElementById("tbody") as HTMLTableElement;
@@ -94,17 +94,17 @@ export default function JogoFonemas() {
     valendo.current = false;
     setBotao("Começar!");
     pararCronometro();
-    setFonema("");
+    setLetra("");
   }
 
   useEffect(() => {
-    shuffle(vetorfonemas);
+    shuffle(vetorletras);
   }, [])
 
   return (
     <div className="bloco">
       <div className="container">
-        <div className="titulo">FONEMAS</div>
+        <div className="titulo">LETRAS E NÚMEROS</div>
         <div className="subtitulo">
           Voltar{" "}
           <button
@@ -116,8 +116,8 @@ export default function JogoFonemas() {
             &#x2190;
           </button>
         </div>
-        <div id="divdofonema" className="fonema">
-          {fonema}
+        <div id="divdaletra" className="letra">
+          {letra}
         </div>
         <br />
         <div className="divdosbotoes">
@@ -129,7 +129,7 @@ export default function JogoFonemas() {
         <span className="subtitulo">Tempo decorrido: {cronometro}</span>
       </div>
       <div className="divparciais">
-        <div className="subtitulo">Tempos por fonema</div>
+        <div className="subtitulo">Tempos por letra</div>
         <br />
         <div className="divdatable">
           <table id="tabela">

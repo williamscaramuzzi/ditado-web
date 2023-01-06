@@ -22,6 +22,13 @@ export default function Indice() {
         </button>
         <button
           onClick={() => {
+            navigate("/letras");
+          }}
+        >
+          Treinar letras
+        </button>
+        <button
+          onClick={() => {
             navigate("/relogio");
           }}
         >
