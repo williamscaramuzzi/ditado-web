@@ -22,10 +22,17 @@ export default function Indice() {
         </button>
         <button
           onClick={() => {
+            navigate("/letrasminusculas");
+          }}
+        >
+          letras minúsculas
+        </button>
+        <button
+          onClick={() => {
             navigate("/letras");
           }}
         >
-          Treinar letras
+          LETRAS E NÚMEROS
         </button>
         <button
           onClick={() => {

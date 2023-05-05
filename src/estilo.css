@@ -75,6 +75,10 @@ body {
   font-size: 11vh;
 }
 
+#letracursiva{
+  font-family: 'Sacramento', cursive;
+}
+
 @media screen and (min-width: 600px) {
   .palavra {
     font-size: 6rem;

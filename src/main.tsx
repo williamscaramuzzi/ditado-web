@@ -7,6 +7,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import "./estilo.css";
 import JogoRelogio from "./JogoRelogio";
 import JogoLetras from "./JogoLetras";
+import JogoLetrasMinusculas from "./JogoLetrasMinusculas";
 
 const router = createHashRouter([
   {
@@ -20,6 +21,10 @@ const router = createHashRouter([
   {
     path: "/letras",
     element: <JogoLetras />,
+  },
+  {
+    path: "/letrasminusculas",
+    element: <JogoLetrasMinusculas />,
   },
   {
     path: "/palavras",
