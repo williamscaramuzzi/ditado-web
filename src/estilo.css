@@ -111,17 +111,38 @@ body {
 
 .divdosbotoes {
   display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
-  border: 1px solid;
-  width: 90%;
+  flex-direction: column;
+  gap: 0.5rem; /* espaçamento vertical */
+  width: 100%;
+  max-width: 400px; /* ou o tamanho que preferir */
+  margin: 0 auto; /* centralizar horizontalmente */
 }
 
-button {
-  flex-grow: 1;
-  height: 95%;
-  width: 50%;
+.botaocomecar {
   font-size: 2rem;
+  height: 50px;
+}
+
+input[type="number"] {
+  width: 100%;      /* ocupa largura máxima */
+  box-sizing: border-box; /* para não ultrapassar a largura do pai */
+  font-size: 2rem;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.botoes-linha {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.botoes-linha input[type="submit"],
+.botoes-linha button {
+  flex: 1;           /* dividem igualmente o espaço */
+  height: 50px;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 #botaovoltar {

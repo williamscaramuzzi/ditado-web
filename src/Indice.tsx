@@ -41,6 +41,13 @@ export default function Indice() {
         >
           Treinar relógio
         </button>
+        <button
+          onClick={() => {
+            navigate("/tabuada");
+          }}
+        >
+          Tabuada
+        </button>
       </div>
     </div>
   );

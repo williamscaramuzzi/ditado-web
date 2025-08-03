@@ -8,6 +8,7 @@ import "./estilo.css";
 import JogoRelogio from "./JogoRelogio";
 import JogoLetras from "./JogoLetras";
 import JogoLetrasMinusculas from "./JogoLetrasMinusculas";
+import JogoTabuada from "./JogoTabuada";
 
 const router = createHashRouter([
   {
@@ -33,6 +34,10 @@ const router = createHashRouter([
   {
     path: "/relogio",
     element: <JogoRelogio />,
+  },
+  {
+    path: "/tabuada",
+    element: <JogoTabuada />,
   },
 ]);
 
