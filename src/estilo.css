@@ -41,11 +41,9 @@ body {
   padding: 1rem;
   width: 60vw;
   min-width: 441px;
-  border: 1px solid blue;
 }
 
 .divparciais {
-  border: 1px solid blue;
   flex-grow: 1;
   padding: 3px;
   width: 30vw;
@@ -53,6 +51,7 @@ body {
 }
 
 .divdatable {
+  border: 1px solid black;
   overflow-y: scroll;
   display: flex;
   flex-direction: column-reverse;
@@ -111,11 +110,14 @@ body {
 
 .divdosbotoes {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.5rem; /* espaçamento vertical */
   width: 100%;
-  max-width: 400px; /* ou o tamanho que preferir */
   margin: 0 auto; /* centralizar horizontalmente */
+}
+
+.divdosbotoes button{
+  font-size: 5vh;
 }
 
 .botaocomecar {
@@ -140,7 +142,7 @@ input[type="number"] {
 .botoes-linha input[type="submit"],
 .botoes-linha button {
   flex: 1;           /* dividem igualmente o espaço */
-  height: 50px;
+  height: 150px;
   font-size: 2rem;
   cursor: pointer;
 }
@@ -152,7 +154,7 @@ input[type="number"] {
 }
 
 #tabela {
-  border: 1px solid;
+  border: 1px solid black;
 }
 
 tr:nth-child(even) {
@@ -164,7 +166,6 @@ tr:nth-child(odd) {
 }
 
 #tabela td {
-  border-bottom: 1px solid red;
   width: 99px;
 }
 
@@ -188,6 +189,9 @@ tr:nth-child(odd) {
   border: 1px solid;
   height: 80%;
 }
+.divdosbotoesdorelogio button {
+  font-size: 2rem;
+}
 
 #imgdorelogio {
   max-width: 100%;
@@ -197,7 +201,6 @@ tr:nth-child(odd) {
 .divdorelogio {
   background-image: url("./assets/relogiofundo.png");
   background-size: 800px 800px;
-  border: 1px solid red;
   width: 800px;
   height: 800px;
   grid-column: 2;
