@@ -104,11 +104,11 @@ export default function JogoFonemas() {
   return (
     <div className="bloco">
       <div className="container">
-        <div className="titulo">FONEMAS</div>
+        <h1 className="titulo">FONEMAS</h1>
         <div className="subtitulo">
           Voltar{" "}
           <button
-            id="botaovoltar"
+            id="botaovoltar" aria-label="Voltar ao início"
             onClick={() => {
               navigate("/");
             }}

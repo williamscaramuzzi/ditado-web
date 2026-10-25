@@ -104,11 +104,11 @@ export default function JogoLetras() {
   return (
     <div className="bloco">
       <div className="container">
-        <div className="titulo">LETRAS E NÚMEROS</div>
+        <h1 className="titulo">LETRAS E NÚMEROS</h1>
         <div className="subtitulo">
           Voltar{" "}
           <button
-            id="botaovoltar"
+            id="botaovoltar" aria-label="Voltar ao início"
             onClick={() => {
               navigate("/");
             }}

@@ -10,7 +10,9 @@ import JogoLetras from "./JogoLetras";
 import JogoLetrasMinusculas from "./JogoLetrasMinusculas";
 import JogoTabuada from "./JogoTabuada";
 
-const router = createHashRouter([
+import AppLayout from "./AppLayout";
+import JogoSoma from "./JogoSoma";
+const router = createHashRouter([{ element: <AppLayout />, children: [
   {
     path: "/",
     element: <Indice />,
@@ -39,7 +41,11 @@ const router = createHashRouter([
     path: "/tabuada",
     element: <JogoTabuada />,
   },
-]);
+  {
+    path: "/soma",
+    element: <JogoSoma />,
+  }
+]}]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

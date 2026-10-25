@@ -1,54 +1,28 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { activities } from "./activities";
+import ActivityIcon from "./ActivityIcon";
 
 export default function Indice() {
-  const navigate = useNavigate();
   return (
-    <div>
-      <span id="mensageminicial">Escolha o treinamento de hoje</span>
-      <div className="escolha">
-        <button
-          onClick={() => {
-            navigate("/palavras");
-          }}
-        >
-          Treinar palavras
-        </button>
-        <button
-          onClick={() => {
-            navigate("/fonemas");
-          }}
-        >
-          Treinar fonemas
-        </button>
-        <button
-          onClick={() => {
-            navigate("/letrasminusculas");
-          }}
-        >
-          letras minúsculas
-        </button>
-        <button
-          onClick={() => {
-            navigate("/letras");
-          }}
-        >
-          LETRAS E NÚMEROS
-        </button>
-        <button
-          onClick={() => {
-            navigate("/relogio");
-          }}
-        >
-          Treinar relógio
-        </button>
-        <button
-          onClick={() => {
-            navigate("/tabuada");
-          }}
-        >
-          Tabuada
-        </button>
+    <section className="home" aria-labelledby="home-title">
+      <div className="home-welcome">
+        <span className="welcome-decoration decoration-left" aria-hidden="true">✦</span>
+        <div className="eyebrow">UM MUNDO DE DESCOBERTAS</div>
+        <h1 id="home-title">O que vamos <span>aprender hoje?</span></h1>
+        <p className="intro">Escolha uma atividade e vamos nos divertir aprendendo!</p>
+        <span className="welcome-decoration decoration-right" aria-hidden="true">✧</span>
       </div>
-    </div>
+      <div className="activity-grid">
+        {activities.map(activity => (
+          <Link to={activity.path} className="activity-card" data-activity={activity.kind} key={activity.path}>
+            <div className="card-art"><ActivityIcon kind={activity.kind} /></div>
+            <h2>{activity.name}</h2>
+            <p>{activity.detail}</p>
+            <span className="card-action">{activity.label}<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
+

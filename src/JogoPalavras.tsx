@@ -108,11 +108,11 @@ export default function JogoPalavras() {
   return (
     <div className="bloco">
       <div className="container">
-        <div className="titulo">LEITURA DE PALAVRAS</div>
+        <h1 className="titulo">LEITURA DE PALAVRAS</h1>
         <div className="subtitulo">
           Voltar{" "}
           <button
-            id="botaovoltar"
+            id="botaovoltar" aria-label="Voltar ao início"
             onClick={() => {
               navigate("/");
             }}

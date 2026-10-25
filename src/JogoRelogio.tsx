@@ -152,7 +152,7 @@ export default function JogoRelogio() {
           <h1>RELÓGIO DE PONTEIRO</h1>
           Voltar
           <button
-            id="botaovoltar"
+            id="botaovoltar" aria-label="Voltar ao início"
             onClick={() => {
               navigate("/");
             }}
@@ -165,22 +165,40 @@ export default function JogoRelogio() {
           <button onClick={pararDitado}>Parar!</button>
           Tempo decorrido: {cronometro}
         </div>
-        <svg className="divdorelogio">
+        <svg className="divdorelogio" viewBox="-100 -100 1000 1000" role="img" aria-label="Relógio de ponteiros para leitura das horas">
+<circle cx="400" cy="400" r="480" className="clock-minutes-ring" />
+          {Array.from({ length: 12 }, (_, i) => {
+            const angle = i * Math.PI / 6;
+            return (
+              <text
+                key={i}
+                x={400 + 440 * Math.sin(angle)}
+                y={400 - 440 * Math.cos(angle)}
+                className="clock-minute-number"
+              >
+                {String(i * 5).padStart(2, "0")}
+              </text>
+            );
+          })}
+          <circle cx="400" cy="400" r="390" className="clock-face" />
+{Array.from({length:60},(_,i)=><line key={i} x1="400" y1="26" x2="400" y2={i%5===0?50:38} transform={`rotate(${i*6} 400 400)`} className="clock-tick"/>)}
+{Array.from({length:12},(_,i)=><text key={i} x={400+310*Math.sin((i+1)*Math.PI/6)} y={400-310*Math.cos((i+1)*Math.PI/6)} className="clock-number">{i+1}</text>)}
+
           <line
             x1="400"
             y1="400"
             x2={x2hora}
             y2={y2hora}
-            style={{ stroke: "rgba(240,33,33,0.7)", strokeWidth: 20 }}
+            className="clock-hour"
           />
           <line
             x1="400"
             y1="400"
             x2={x2minuto}
             y2={y2minuto}
-            style={{ stroke: "rgba(52,52,80,0.5)", strokeWidth: 20 }}
+            className="clock-minute"
           />
-        </svg>
+        <circle cx="400" cy="400" r="16" className="clock-center" /></svg>
         <div className="divparciaisdorelogio">
           <div className="subtitulo">Tempos por hora</div>
           <br />

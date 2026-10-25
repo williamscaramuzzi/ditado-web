@@ -1,213 +1,263 @@
-* {
-  font-family: "Handineat", sans-serif;
+/* Shared, light-only design system. All activities inherit their own accent. */
+:root {
+  color-scheme: light;
+  font-family: "Nunito", "Trebuchet MS", system-ui, sans-serif;
+  font-size: 18px;
+  color: #343454;
+  background: #f8f9fd;
+  font-synthesis: none;
+  --accent: #7053b6;
+  --accent-hover: #593e98;
+  --soft: #f1ebff;
+  --card-bg: #f1ebff;
+  --edge: #dfd4f5;
+  --muted: #63657d;
+  --border: #e5e6f0;
 }
-
-html {
-  background-color: #ffffff;
-  background-image: url("./assets/fundo.jpg");
-  background-size: cover;
-}
-
-body {
-  background-color: rgba(127, 127, 127, 0.1);
-}
-
-#mensageminicial {
-  font-size: 5vw;
-}
-
-.escolha {
-  width: 50vw;
-  padding: 10px;
-  border: 1px solid;
-  justify-content: center;
-}
-
-.escolha button {
-  border: 1px solid;
-  width: 100%;
-  height: 15vh;
-  margin-left: 10px;
-  font-size: 5vw;
-}
-
-.bloco {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.container {
-  flex-grow: 1;
-  padding: 1rem;
-  width: 60vw;
-  min-width: 441px;
-}
-
-.divparciais {
-  flex-grow: 1;
-  padding: 3px;
-  width: 30vw;
-  min-width: 441px;
-}
-
-.divdatable {
-  border: 1px solid black;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column-reverse;
-  height: 300px;
-}
-
-.palavra,
-.fonema,
-.letra {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid black;
-  padding: 15px;
-  width: 90%;
-  height: 7rem;
-  color: red;
-  text-align: center;
-}
-.letra{
-  font-size: 11vh;
-}
-
-#letracursiva{
-  font-family: 'Sacramento', cursive;
-}
-
-@media screen and (min-width: 600px) {
-  .palavra {
-    font-size: 6rem;
-  }
-
-  .fonema {
-    font-size: 3.5rem;
-  }
-}
-
-@media screen and (max-width: 599px) {
-  .palavra {
-    font-size: 11vw;
-  }
-
-  .fonema {
-    font-size: 7vw;
-  }
-}
-
-.titulo {
-  font-size: 5rem;
-  color: black;
-}
-
-.subtitulo {
-  font-size: 2rem;
-  color: black;
-}
-
-.divdosbotoes {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem; /* espaçamento vertical */
-  width: 100%;
-  margin: 0 auto; /* centralizar horizontalmente */
-}
-
-.divdosbotoes button{
-  font-size: 5vh;
-}
-
-.botaocomecar {
-  font-size: 2rem;
-  height: 50px;
-}
-
-input[type="number"] {
-  width: 100%;      /* ocupa largura máxima */
-  box-sizing: border-box; /* para não ultrapassar a largura do pai */
-  font-size: 2rem;
-  padding: 0.25rem 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.botoes-linha {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.botoes-linha input[type="submit"],
-.botoes-linha button {
-  flex: 1;           /* dividem igualmente o espaço */
-  height: 150px;
-  font-size: 2rem;
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+button, input[type="submit"], a { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+button, input[type="submit"] {
+  min-height: 58px;
+  padding: 12px 25px;
+  border: 2px solid var(--edge);
+  border-radius: 16px;
+  background: white;
+  color: var(--accent);
+  font-weight: 800;
   cursor: pointer;
+  transition: background .16s ease, transform .16s ease, box-shadow .16s ease;
+}
+button:hover, input[type="submit"]:hover { background: var(--soft); }
+button:active, input[type="submit"]:active { transform: translateY(2px); }
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 3px solid #3b47ab;
+  outline-offset: 5px;
+}
+button:disabled { opacity: .55; cursor: not-allowed; }
+[data-activity="palavras"] {
+  --accent: #a84732; --accent-hover: #8c3726; --soft: #fff1e9; --card-bg: #fff0e6; --edge: #f5d5c1;
+}
+[data-activity="fonemas"] {
+  --accent: #21765f; --accent-hover: #175b49; --soft: #eaf9f2; --card-bg: #e5f6ee; --edge: #c2e8d9;
+}
+[data-activity="letraminuscula"] {
+  --accent: #87621b; --accent-hover: #694a10; --soft: #fffae8; --card-bg: #fff7db; --edge: #eddfa9;
+}
+[data-activity="letras"] {
+  --accent: #286c9d; --accent-hover: #1b527c; --soft: #edf7ff; --card-bg: #e8f3ff; --edge: #c9e0f5;
+}
+[data-activity="relogio"] {
+  --accent: #7053b6; --accent-hover: #593e98; --soft: #f1ebff; --card-bg: #efe9ff; --edge: #dcd0f6;
+}
+[data-activity="tabuada"] {
+  --accent: #a33f66; --accent-hover: #83304f; --soft: #fff0f6; --card-bg: #ffebf2; --edge: #f0cddd;
+}
+[data-activity="soma"] {
+  --accent: #55781a; --accent-hover: #405c11; --soft: #f3fae3; --card-bg: #eff8da; --edge: #d9e8b0;
+}
+.app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+.app-header {
+  min-height: 88px;
+  padding: 18px clamp(22px, 4vw, 80px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  background: #fff;
+  border-bottom: 1px solid #eeedf6;
+}
+.brand { display: inline-flex; align-items: center; font-size: 28px; font-weight: 900; letter-spacing: -1px; }
+.brand > span:last-child { color: #8870c3; }
+.brand-mark { width: 46px; height: 46px; display: grid; place-items: center; margin-right: 12px; border-radius: 15px; background: #8c70cf; transform: rotate(-6deg); }
+.brand-mark svg { width: 34px; height: 34px; }
+.header-caption { color: #76728d; font-size: 16px; font-weight: 700; }
+.header-caption > span { color: #e6ac3b; padding-right: 8px; font-size: 23px; }
+.main-content { width: 100%; max-width: 1920px; margin: 0 auto; padding: 34px clamp(22px, 4vw, 80px); flex: 1; min-width: 0; }
+.home-welcome { position: relative; text-align: center; padding: 10px 60px 28px; }
+.eyebrow { color: #7a659c; font-size: 12px; letter-spacing: 2px; font-weight: 900; margin-bottom: 12px; }
+h1 { margin: 0; font-size: clamp(30px, 3.1vw, 54px); font-weight: 900; line-height: 1.2; letter-spacing: -1.3px; }
+.home h1 > span { color: #8160bf; }
+.intro { font-size: clamp(16px, 1.25vw, 22px); color: var(--muted); margin: 14px 0 0; line-height: 1.6; }
+.welcome-decoration { position: absolute; pointer-events: none; font-size: 58px; line-height: 1; }
+.decoration-left { left: 6%; top: 12%; color: #edba52; transform: rotate(-14deg); }
+.decoration-right { right: 7%; top: 36%; color: #a68bd4; transform: rotate(12deg); }
+.activity-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2vw, 30px); }
+.activity-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding: 20px 24px 22px;
+  text-align: center;
+  background: var(--card-bg);
+  border: 2px solid var(--edge);
+  border-radius: 28px;
+  box-shadow: 0 5px 0 var(--edge), 0 10px 24px #34345405;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.activity-card:hover { transform: translateY(-5px); box-shadow: 0 8px 0 var(--edge), 0 16px 24px #3434540c; }
+.activity-card:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--edge); }
+.card-art { width: 140px; height: 112px; display: grid; place-items: center; color: var(--accent); }
+.activity-illustration { display: block; width: 100%; height: 100%; overflow: visible; }
+.activity-card h2 { font-size: clamp(21px, 1.8vw, 30px); font-weight: 900; line-height: 1.2; margin: 12px 0 8px; letter-spacing: -.5px; }
+.activity-card p { font-size: clamp(15px, 1.1vw, 19px); line-height: 1.5; color: #5d5f75; max-width: 340px; margin: 0 0 18px; flex: 1; }
+.card-action { display: flex; justify-content: center; align-items: center; gap: 12px; width: 100%; min-height: 52px; border-radius: 14px; background: #ffffffc9; color: var(--accent); font-size: 16px; font-weight: 900; }
+.card-action svg { width: 22px; height: 22px; flex-shrink: 0; }
+.app-footer { text-align: center; color: #74718a; font-size: 14px; padding: 14px 24px 28px; }
+.app-footer > span { color: #c79932; margin-right: 6px; }
+
+/* Exercise cards retain the original controls, content and data flow. */
+.bloco { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(280px, 1fr); gap: 26px; align-items: start; }
+.container, .divparciais, .divparciaisdorelogio {
+  min-width: 0; padding: clamp(22px, 2.5vw, 40px); background: white;
+  border: 2px solid var(--border); border-radius: 26px; box-shadow: 0 6px 0 #e9eaf2;
+}
+.container { border-top: 6px solid var(--edge); }
+.titulo, .titulodorelogio h1 { color: #343454; font-size: clamp(26px, 2.5vw, 42px); font-weight: 900; margin: 0 0 20px; line-height: 1.25; }
+.subtitulo { color: #5c5d76; font-size: 18px; line-height: 1.6; font-weight: 700; }
+.container > .subtitulo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+#botaovoltar { min-width: 58px; min-height: 48px; padding: 6px 16px; font-size: 22px; background: var(--soft); }
+.container > br, .divparciais > br, .divparciaisdorelogio > br { display: none; }
+.palavra, .fonema, .letra {
+  display: flex; align-items: center; justify-content: center;
+  gap: 36px; min-height: clamp(220px, 26vh, 350px); padding: 26px 18px; margin: 24px 0;
+  border: 2px dashed var(--edge); border-radius: 24px; background: var(--soft);
+  font-family: Arial, Helvetica, sans-serif; color: var(--accent); font-weight: 600; text-align: center;
+  overflow-wrap: anywhere;
+}
+.palavra { font-size: clamp(30px, 4.2vw, 80px); }
+.fonema { font-size: clamp(25px, 3vw, 56px); }
+.letra { font-size: clamp(90px, 10vw, 180px); }
+#letracursiva { font-family: Sacramento, cursive; font-weight: 400; }
+.palavra:empty::before, .fonema:empty::before {
+  content: "Vamos começar?"; color: var(--accent); font: 800 clamp(22px, 2vw, 32px) "Nunito", "Trebuchet MS", sans-serif;
+}
+.divdosbotoes, .botoes-linha { display: flex; gap: 14px; width: 100%; }
+.divdosbotoes > button, .botoes-linha > * { flex: 1; min-width: 0; }
+.divdosbotoes > button:first-child, input[type="submit"], .divdosbotoesdorelogio > button:first-child {
+  background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 4px 0 var(--accent-hover);
+}
+.divdosbotoes > button:first-child:hover, input[type="submit"]:hover, .divdosbotoesdorelogio > button:first-child:hover { background: var(--accent-hover); }
+.divdosbotoes form { width: 100%; }
+.container > span.subtitulo, .divparciais > span, .divparciaisdorelogio > span {
+  display: block; margin-top: 28px; padding: 16px 18px; background: #f6f7fb;
+  color: #5f6078; font-size: 16px; line-height: 1.5; border-radius: 14px; font-variant-numeric: tabular-nums;
+}
+.divparciais > .subtitulo, .divparciaisdorelogio > .subtitulo { color: #43435f; font-size: 22px; font-weight: 900; }
+.divdatable {
+  display: flex; flex-direction: column-reverse; overflow: auto; min-height: 180px; max-height: 370px;
+  margin-top: 20px; border: 1px solid var(--border); border-radius: 16px; background: #fcfcff;
+}
+#tabela { width: 100%; border-collapse: collapse; font-size: 16px; }
+#tabela td { padding: 16px 12px; color: #52536b; border-bottom: 1px solid var(--border); overflow-wrap: anywhere; }
+/* Reserve room for three-digit row numbers, including cell padding. */
+#tabela td:first-child {
+  color: #74758c;
+  width: calc(3ch + 24px);
+  min-width: calc(3ch + 24px);
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+#tabela td:last-child { font-variant-numeric: tabular-nums; }
+#tabela tr:nth-child(even) { background: var(--soft); }
+input[type="number"] {
+  width: 100%; min-height: 66px; padding: 14px 20px; margin-bottom: 18px;
+  border: 2px solid var(--edge); border-radius: 16px; background: #fff; color: #343454; font-size: 24px;
+}
+input::placeholder { font-size: 18px; color: #73738b; }
+.tabuada-options { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
+.tabuada-options > .subtitulo { width: 100%; margin-bottom: 4px; }
+.tabuada-options > span:not(.subtitulo) { position: relative; }
+.tabuada-options input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; margin: 0; cursor: pointer; }
+.tabuada-options label { display: grid; place-items: center; min-width: 54px; min-height: 54px; padding: 8px; background: var(--soft); color: var(--accent); border: 2px solid var(--edge); border-radius: 14px; font-size: 22px; font-weight: 900; pointer-events: none; }
+.tabuada-options input:checked + label { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 3px 0 var(--accent-hover); }
+.tabuada-options input:focus-visible + label { outline: 3px solid #3b47ab; outline-offset: 4px; }
+.soma-options { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
+.soma-options > .subtitulo { width: 100%; margin-bottom: 4px; }
+.soma-options > span:not(.subtitulo) { position: relative; }
+.soma-options input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; margin: 0; cursor: pointer; }
+.soma-options label { display: grid; place-items: center; min-width: 54px; min-height: 54px; padding: 8px 20px; background: var(--soft); color: var(--accent); border: 2px solid var(--edge); border-radius: 14px; font-size: 20px; font-weight: 900; pointer-events: none; }
+.soma-options input:checked + label { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 3px 0 var(--accent-hover); }
+.soma-options input:focus-visible + label { outline: 3px solid #3b47ab; outline-offset: 4px; }
+.error-message { display: block; padding: 14px 18px; margin-top: 22px; border-radius: 14px; color: #a12f43; background: #fff0f1; font-size: 18px; font-weight: 700; }
+.error-message:empty { display: none; }
+.containerdorelogio { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(280px, 1fr) minmax(0, 1.5fr); gap: 26px; align-items: start; }
+.titulodorelogio { grid-column: 1; grid-row: 1; }
+.divdosbotoesdorelogio { grid-column: 1; grid-row: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; color: #63657d; line-height: 1.8; font-weight: 700; }
+.divdosbotoesdorelogio button { flex: 1; }
+.divparciaisdorelogio { grid-column: 1; grid-row: 3; }
+.divdorelogio { grid-column: 2; grid-row: 1 / 4; width: 100%; height: auto; aspect-ratio: 1; max-width: 690px; justify-self: center; filter: drop-shadow(0 8px 0 #dfd6f0); }
+.clock-minutes-ring { fill: #fff0e2; stroke: #efc49e; stroke-width: 4; }
+.clock-minute-number { fill: #a04f2c; font: 800 42px "Nunito", Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; }
+.clock-face { fill: #fffdf9; stroke: #b49adc; stroke-width: 16; }
+.clock-number { fill: #644e86; font: 700 60px "Nunito", Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; }
+.clock-tick { stroke: #b5a7ce; stroke-width: 4; }
+.clock-hour { stroke: #8866bf; stroke-width: 22; stroke-linecap: round; }
+.clock-minute { stroke: #df8055; stroke-width: 14; stroke-linecap: round; }
+.clock-center { fill: #644e86; }
+
+@media (min-width: 1700px) {
+  :root { font-size: 22px; }
+  .main-content { padding-top: 40px; }
+  .app-header { min-height: 104px; }
+  .header-caption { font-size: 21px; }
+  .home-welcome { padding-bottom: 40px; }
+  .card-art { width: 180px; height: 144px; }
+  .activity-card { padding: 28px 34px; }
+  .card-action { min-height: 64px; font-size: 21px; }
+  button, input[type="submit"] { min-height: 70px; }
+  .subtitulo, #tabela, .container > span.subtitulo, .divparciais > span, .divparciaisdorelogio > span { font-size: 21px; }
+  .app-footer { font-size: 18px; }
+}
+@media (max-width: 1050px) {
+  .activity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bloco { grid-template-columns: minmax(0, 1fr); }
+  .containerdorelogio { grid-template-columns: minmax(260px, 1fr) minmax(0, 1.2fr); }
+  .decoration-left { left: 0; }
+  .decoration-right { right: 0; }
+}
+@media (max-width: 650px) {
+  .app-header { min-height: 76px; padding: 14px 20px; }
+  .brand { font-size: 25px; }
+  .header-caption { display: none; }
+  .main-content { padding: 24px 18px; }
+  .home-welcome { padding: 6px 0 28px; }
+  .welcome-decoration { display: none; }
+  .eyebrow { font-size: 10px; }
+  .activity-grid { gap: 18px; }
+  .activity-card { padding: 16px 12px; border-radius: 22px; }
+  .card-art { width: 110px; height: 92px; }
+  .activity-card h2 { font-size: 20px; }
+  .activity-card p { font-size: 14px; }
+  .card-action { font-size: 14px; padding: 10px 8px; gap: 6px; }
+  .card-action svg { width: 18px; height: 18px; }
+  .container, .divparciais, .divparciaisdorelogio { padding: 20px; }
+  .palavra { font-size: clamp(26px, 6.4vw, 44px); }
+  .fonema { font-size: clamp(22px, 5.5vw, 36px); }
+  .palavra, .fonema, .letra { min-height: 190px; padding: 24px 12px; }
+  .letra { font-size: 90px; }
+  .divdosbotoes, .botoes-linha { gap: 10px; }
+  button, input[type="submit"] { padding: 12px 16px; }
+  .containerdorelogio { display: flex; flex-direction: column; }
+  .containerdorelogio > * { width: 100%; }
+  .divdorelogio { order: 1; }
+  .divdosbotoesdorelogio { order: 2; }
+  .divparciaisdorelogio { order: 3; }
+  input::placeholder { font-size: 16px; }
+}
+@media (max-width: 390px) {
+  .activity-grid { grid-template-columns: 1fr; }
+  .card-art { width: 135px; height: 110px; }
+  .activity-card h2 { font-size: 24px; }
+  .activity-card p, .card-action { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
 }
 
-#botaovoltar {
-  border-radius: 15px;
-  width: 50px;
-  height: 50px;
-}
-
-#tabela {
-  border: 1px solid black;
-}
-
-tr:nth-child(even) {
-  background-color: #ffffff;
-}
-
-tr:nth-child(odd) {
-  background-color: #eeeeee;
-}
-
-#tabela td {
-  width: 99px;
-}
-
-.containerdorelogio {
-  border: 1px solid white;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  grid-template-rows: repeat(5, 1fr);
-}
-
-.titulodorelogio {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.divdosbotoesdorelogio {
-  grid-column: 1;
-  grid-row: 2;
-  padding: 10px;
-  border: 1px solid;
-  height: 80%;
-}
-.divdosbotoesdorelogio button {
-  font-size: 2rem;
-}
-
-#imgdorelogio {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.divdorelogio {
-  background-image: url("./assets/relogiofundo.png");
-  background-size: 800px 800px;
-  width: 800px;
-  height: 800px;
-  grid-column: 2;
-  grid-row: 1 / 5;
-}
-
-.divparciaisdorelogio {
-  grid-column: 1;
-  grid-row: 3 / 5;
-}

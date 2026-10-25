@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface PartialTime {
@@ -11,8 +11,18 @@ interface TabuadaStates {
     [key: number]: boolean;
 }
 
+// Converte segundos totais para o formato mm:ss.
+// Os minutos são completados a cada 60 segundos (divisão inteira)
+// e os segundos são o resto da divisão por 60.
+function formatTime(totalSeconds: number): string {
+    const minutos = Math.floor(totalSeconds / 60);
+    const segundos = totalSeconds % 60;
+    return `${String(minutos).padStart(2, "0")}:${String(segundos).padStart(2, "0")}`;
+}
+
 export default function JogoTabuada() {
     const navigate = useNavigate();
+    const inputRef = useRef<HTMLInputElement>(null);
 
     // Consolidate multiple boolean states into a single object
     const [selectedTabuadas, setSelectedTabuadas] = useState<TabuadaStates>({
@@ -81,9 +91,13 @@ export default function JogoTabuada() {
             }
         }
 
-        // Shuffle and select up to 30 expressions
-        const shuffled = shuffleArray(combinations);
-        return shuffled.slice(0, 30);
+        // Fill 100 exercises, reshuffling the selected combinations each round.
+        const exercises: string[] = [];
+        while (exercises.length < 100) {
+            const shuffled = shuffleArray(combinations);
+            exercises.push(...shuffled.slice(0, 100 - exercises.length));
+        }
+        return exercises;
     }, [selectedTabuadas, shuffleArray]);
 
     const startTimer = useCallback(() => {
@@ -103,7 +117,8 @@ export default function JogoTabuada() {
             clearInterval(intervalID);
             setIntervalID(null);
         }
-        setCronometro(0);
+        // O cronômetro NÃO é zerado aqui: ele fica congelado até uma nova sessão começar
+        // (o startTimer já faz setCronometro(0)).
     }, [intervalID]);
 
     const calculateAverage = useCallback((times: PartialTime[]): string => {
@@ -165,6 +180,7 @@ export default function JogoTabuada() {
             recordPartialTime();
             moveToNextExpression();
             clearInputProduto();
+            inputRef.current?.focus();
         } else {
             // Start the game
             const newExpressions = generateExpressions();
@@ -179,6 +195,7 @@ export default function JogoTabuada() {
             setAverageTime("");
             setErrorMessage(""); // limpar mensagem de erro no início
             startTimer();
+            inputRef.current?.focus();
         }
     }, [
         isActive,
@@ -219,18 +236,17 @@ export default function JogoTabuada() {
     return (
         <div className="bloco">
             <div className="container">
-                <div className="titulo">TABUADA</div>
+                <h1 className="titulo">TABUADA</h1>
                 <div className="subtitulo">
                     Voltar{" "}
                     <button
-                        id="botaovoltar"
+                        id="botaovoltar" aria-label="Voltar ao início"
                         onClick={() => navigate("/")}
                     >
                         ⮐
                     </button>
                 </div>
-                <div>
-                    <span className="subtitulo">Escolha quais tabuadas serão sorteadas:</span>
+                <div className="tabuada-options"><span className="subtitulo">Escolha quais tabuadas serão sorteadas:</span>
                     {Object.entries(selectedTabuadas).map(([number, isSelected]) => (
                         <span key={number}>
                             <input
@@ -255,7 +271,8 @@ export default function JogoTabuada() {
                         }}
                     >
                         <input
-                            type="number"
+                            ref={inputRef}
+                            aria-label="Resultado da tabuada" type="number"
                             step="1"
                             pattern="\d*"
                             value={resultado}
@@ -271,15 +288,15 @@ export default function JogoTabuada() {
                         />
                         <div className="botoes-linha">
                             <input className="botaocomecar" type="submit" value={buttonText} />
-                            <button onClick={handleStop}>Parar!</button>
+                            <button type="button" onClick={handleStop}>Parar!</button>
                         </div>
                     </form>
                 </div>
-                <span style={{color: "red", fontSize: '2rem'}}>{errorMessage}</span>
+                <span className="error-message" role="alert">{errorMessage}</span>
 
                 <br />
                 <br />
-                <span className="subtitulo">Tempo decorrido: {cronometro}</span>
+                <span className="subtitulo">Tempo decorrido: {formatTime(cronometro)}</span>
             </div>
             <div className="divparciais">
                 <div className="subtitulo">Tempos por resposta</div>
@@ -301,4 +318,4 @@ export default function JogoTabuada() {
             </div>
         </div>
     );
-}
+}

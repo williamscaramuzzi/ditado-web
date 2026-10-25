@@ -104,11 +104,11 @@ export default function JogoLetrasMinusculas() {
   return (
     <div className="bloco">
       <div className="container">
-        <div className="titulo">Letras minúsculas</div>
+        <h1 className="titulo">Letras minúsculas</h1>
         <div className="subtitulo">
           Voltar{" "}
           <button
-            id="botaovoltar"
+            id="botaovoltar" aria-label="Voltar ao início"
             onClick={() => {
               navigate("/");
             }}
